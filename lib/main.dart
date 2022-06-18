@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final firebaseAuthViewModel = FirebaseAuthViewModel();
     return MaterialApp(
-      home: StreamBuilder<User?>(
+      home: StreamBuilder(
         stream: firebaseAuthViewModel.stateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
