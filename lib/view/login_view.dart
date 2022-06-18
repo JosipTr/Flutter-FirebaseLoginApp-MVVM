@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login_app_mvvm/view/assets/strings/strings.dart';
 import 'package:flutter_login_app_mvvm/widgets/my_textfield.dart';
 
 class LoginView extends StatefulWidget {
@@ -21,7 +22,7 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: MyTextField("f",emailController),
+        child: MyTextField(Strings.emailHintText,emailController),
       ),
     );
   }
