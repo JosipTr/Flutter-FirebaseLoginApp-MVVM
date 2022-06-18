@@ -7,26 +7,26 @@ import 'package:flutter_login_app_mvvm/viewmodel/firebase_viewmodel.dart';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final _firebaseAuthViewModel = FirebaseAuthViewModel();
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final firebaseAuthViewModel = FirebaseAuthViewModel();
     return MaterialApp(
       home: StreamBuilder<User?>(
-        stream: _firebaseAuthViewModel.stateChanges(),
+        stream: firebaseAuthViewModel.stateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return Scaffold();
+            return const Scaffold();
           } else {
-            return LoginView();
+            return const LoginView();
           }
         },
-        ),
+      ),
     );
   }
 }
