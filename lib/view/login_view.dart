@@ -12,6 +12,7 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
 //   @override
 // void initState() {
@@ -24,6 +25,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   void dispose() {
     emailController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 
@@ -34,13 +36,43 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            MyTextField(Strings.emailHintText, emailController),
-            MyElevatedButton(Strings.loginButtonText, _printValue)
-          ],
+      body: Container(
+        padding: const EdgeInsets.all(30),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                margin: const EdgeInsets.only(bottom: 15),
+                child: const SizedBox(
+                  height: 200,
+                  width: 200,
+                  child: FlutterLogo(),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 10),
+                child: const Text(Strings.welcomeMessage,
+                    style: TextStyle(
+                        fontSize: 25,
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold)),
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 10),
+                child: MyTextField(Strings.emailHintText, emailController),
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 15),
+                child:
+                    MyTextField(Strings.passwordHintText, passwordController),
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 15),
+                child: MyElevatedButton(Strings.loginButtonText, _printValue),
+              ),
+            ],
+          ),
         ),
       ),
     );
