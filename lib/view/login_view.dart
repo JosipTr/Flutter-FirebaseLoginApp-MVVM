@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login_app_mvvm/assets/strings/strings.dart';
+import 'package:flutter_login_app_mvvm/viewmodel/firebase_viewmodel.dart';
 import 'package:flutter_login_app_mvvm/widgets/my_elevated_button.dart';
 import 'package:flutter_login_app_mvvm/widgets/my_textfield.dart';
 
@@ -11,8 +12,9 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _firebaseAuthViewModel = FirebaseAuthViewModel();
 
 //   @override
 // void initState() {
@@ -24,13 +26,17 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
-  void _printValue() {
-    print("This is output: ${emailController.text}");
+  // void _printValue() {
+  //   print("This is output: ${emailController.text}");
+  // }
+
+  Future _logIn(String email, String password) async {
+    _firebaseAuthViewModel.logIn(email, password);
   }
 
   @override
@@ -60,16 +66,16 @@ class _LoginViewState extends State<LoginView> {
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 10),
-                child: MyTextField(Strings.emailHintText, emailController),
+                child: MyTextField(Strings.emailHintText, _emailController),
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 15),
                 child:
-                    MyTextField(Strings.passwordHintText, passwordController),
+                    MyTextField(Strings.passwordHintText, _passwordController),
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 15),
-                child: MyElevatedButton(Strings.loginButtonText, _printValue),
+                child: MyElevatedButton(Strings.loginButtonText, _logIn),
               ),
             ],
           ),
