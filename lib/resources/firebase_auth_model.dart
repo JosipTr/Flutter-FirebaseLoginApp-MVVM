@@ -6,4 +6,8 @@ class FirebaseAuthModel {
   Future logIn(String email, String password) async {
     await _firebaseAuthModel.signInWithEmailAndPassword(email: email, password: password);
   }
+
+  Stream<User?> stateChanges() {
+    return _firebaseAuthModel.authStateChanges();
+  }
 }
