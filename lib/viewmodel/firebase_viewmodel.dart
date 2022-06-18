@@ -5,7 +5,7 @@ class FirebaseAuthViewModel {
   final FirebaseAuthModel _firebaseAuthModel = FirebaseAuthModel();
 
   Future logIn(String email, String password) async {
-    _firebaseAuthModel.logIn(email, password);
+    await _firebaseAuthModel.logIn(email, password);
   }
 
   Stream<User?> stateChanges() {

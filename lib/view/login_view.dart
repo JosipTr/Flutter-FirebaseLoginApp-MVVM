@@ -36,7 +36,7 @@ class _LoginViewState extends State<LoginView> {
   // }
 
   Future _logIn(String email, String password) async {
-    _firebaseAuthViewModel.logIn(email, password);
+    await _firebaseAuthViewModel.logIn(email, password);
   }
 
   @override
