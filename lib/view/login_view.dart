@@ -35,7 +35,9 @@ class _LoginViewState extends State<LoginView> {
   //   print("This is output: ${emailController.text}");
   // }
 
-  Future _logIn(String email, String password) async {
+  Future _logIn() async {
+    String email = _emailController.text.trim();
+    String password = _passwordController.text.trim();
     await _firebaseAuthViewModel.logIn(email, password);
   }
 
