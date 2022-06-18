@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login_app_mvvm/view/loged_in_view.dart';
 import 'package:flutter_login_app_mvvm/view/login_view.dart';
+import 'package:flutter_login_app_mvvm/viewmodel/firebase_viewmodel.dart';
 
-class MyStreamBuilder extends StatefulWidget {
-  const MyStreamBuilder({Key? key}) : super(key: key);
+class LoginStreamBuilder extends StatelessWidget {
+  const LoginStreamBuilder({Key? key}) : super(key: key);
 
-  @override
-  State<MyStreamBuilder> createState() => _MyStreamBuilderState();
-}
-
-class _MyStreamBuilderState extends State<MyStreamBuilder> {
   @override
   Widget build(BuildContext context) {
+    final firebaseViewModel = FirebaseAuthViewModel();
     return StreamBuilder(
+      stream: firebaseViewModel.stateChanges(),
       builder: (context, snapshot) {
-        return const LoginView();
-      },
+        if (snapshot.hasData) {
+          return const LogedInView();
+        } else {
+          return const LoginView();
+        }
+      }
     );
   }
 }
