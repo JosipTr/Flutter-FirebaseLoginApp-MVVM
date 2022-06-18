@@ -9,6 +9,8 @@ Future main() async {
   runApp(const MyApp());
 }
 
+final navigatorKey = GlobalKey<NavigatorState>();
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -18,8 +20,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: LoginStreamBuilder()
+    return MaterialApp(
+      navigatorKey: navigatorKey,
+      home: const LoginStreamBuilder()
     );
   }
 }
