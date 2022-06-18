@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login_app_mvvm/view/assets/strings/strings.dart';
+import 'package:flutter_login_app_mvvm/assets/strings/strings.dart';
 import 'package:flutter_login_app_mvvm/widgets/my_elevated_button.dart';
 import 'package:flutter_login_app_mvvm/widgets/my_textfield.dart';
 
