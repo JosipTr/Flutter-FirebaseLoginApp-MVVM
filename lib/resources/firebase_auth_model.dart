@@ -18,7 +18,12 @@ class FirebaseAuthModel {
   }
 
   Future register(String email, String password) async {
+    try {
     await _firebaseAuth.createUserWithEmailAndPassword(
         email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      // ignore: avoid_print
+      print(e);
+    }
   }
 }
