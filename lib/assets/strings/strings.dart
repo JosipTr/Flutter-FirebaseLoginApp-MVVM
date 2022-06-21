@@ -6,4 +6,5 @@ class Strings {
   static const String preRegisterText = "Don't have an account? ";
   static const String registerText = "Register";
   static const String preLogInText = "You already have an account? ";
+  static const String confirmPassHintText = "Confirm password:";
 }

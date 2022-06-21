@@ -4,8 +4,9 @@ class FirebaseAuthModel {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   Future logIn(String email, String password) async {
-    try{
-    await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+    try {
+      await _firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
     } on FirebaseAuthException catch (e) {
       // ignore: avoid_print
       print(e);
@@ -14,5 +15,10 @@ class FirebaseAuthModel {
 
   Stream<User?> stateChanges() {
     return _firebaseAuth.authStateChanges();
+  }
+
+  Future register(String email, String password) async {
+    await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email, password: password);
   }
 }

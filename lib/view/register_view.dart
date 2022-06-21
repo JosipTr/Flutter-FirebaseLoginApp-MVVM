@@ -16,6 +16,7 @@ class RegisterView extends StatefulWidget {
 class _RegisterViewState extends State<RegisterView> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
   final _firebaseAuthViewModel = FirebaseAuthViewModel();
 
 //   @override
@@ -30,6 +31,7 @@ class _RegisterViewState extends State<RegisterView> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -37,7 +39,7 @@ class _RegisterViewState extends State<RegisterView> {
   //   print("This is output: ${emailController.text}");
   // }
 
-  Future _logIn() async {
+  Future _register() async {
     showDialog(
         context: context,
         barrierDismissible: false,
@@ -47,7 +49,14 @@ class _RegisterViewState extends State<RegisterView> {
 
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
-    await _firebaseAuthViewModel.logIn(email, password);
+    String confirmedPassword = _confirmPasswordController.text.trim();
+
+    if (password != confirmedPassword) {
+      const snackBar = SnackBar(content: Text("Passwords doesn't match!"));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    } else {
+      await _firebaseAuthViewModel.register(email, password);
+    }
 
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
@@ -92,9 +101,15 @@ class _RegisterViewState extends State<RegisterView> {
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 15),
-                child: MyElevatedButton(Strings.loginButtonText, _logIn),
+                child: MyTextField(
+                    Strings.confirmPassHintText, _confirmPasswordController),
               ),
-              MyRichText(_onClickedSignUp, Strings.preLogInText, Strings.loginButtonText)
+              Container(
+                margin: const EdgeInsets.only(bottom: 15),
+                child: MyElevatedButton(Strings.registerText, _register),
+              ),
+              MyRichText(_onClickedSignUp, Strings.preLogInText,
+                  Strings.loginButtonText)
             ],
           ),
         ),

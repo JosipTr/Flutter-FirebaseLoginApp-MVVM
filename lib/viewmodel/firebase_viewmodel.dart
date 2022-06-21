@@ -11,4 +11,8 @@ class FirebaseAuthViewModel {
   Stream<User?> stateChanges() {
     return _firebaseAuthModel.stateChanges();
   }
+
+  Future register(String email, String password) async {
+    await _firebaseAuthModel.register(email, password);
+  }
 }
