@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login_app_mvvm/assets/strings/strings.dart';
-import 'package:flutter_login_app_mvvm/view/register_view.dart';
+import 'package:flutter_login_app_mvvm/main.dart';
 import 'package:flutter_login_app_mvvm/viewmodel/firebase_viewmodel.dart';
 import 'package:flutter_login_app_mvvm/widgets/my_elevated_button.dart';
 import 'package:flutter_login_app_mvvm/widgets/my_richtext.dart';
 import 'package:flutter_login_app_mvvm/widgets/my_textfield.dart';
 
-import '../main.dart';
-
-class LoginView extends StatefulWidget {
-  const LoginView({Key? key}) : super(key: key);
+class RegisterView extends StatefulWidget {
+  const RegisterView({Key? key}) : super(key: key);
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<RegisterView> createState() => _RegisterViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _RegisterViewState extends State<RegisterView> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _firebaseAuthViewModel = FirebaseAuthViewModel();
@@ -55,10 +53,7 @@ class _LoginViewState extends State<LoginView> {
   }
 
   void _onClickedSignUp() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const RegisterView())
-    );
+    Navigator.pop(context);
   }
 
   @override
@@ -99,7 +94,7 @@ class _LoginViewState extends State<LoginView> {
                 margin: const EdgeInsets.only(bottom: 15),
                 child: MyElevatedButton(Strings.loginButtonText, _logIn),
               ),
-              MyRichText(_onClickedSignUp, Strings.preRegisterText, Strings.registerText)
+              MyRichText(_onClickedSignUp, Strings.preLogInText, Strings.loginButtonText)
             ],
           ),
         ),
