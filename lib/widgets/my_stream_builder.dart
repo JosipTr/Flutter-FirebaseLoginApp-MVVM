@@ -12,11 +12,6 @@ class LoginStreamBuilder extends StatelessWidget {
     return StreamBuilder(
       stream: firebaseViewModel.stateChanges(),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError) {
-          return const Center(child: Text("Error"));
-        }
         if (snapshot.hasData) {
           return const LogedInView();
         } else {

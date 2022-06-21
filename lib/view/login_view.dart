@@ -6,8 +6,6 @@ import 'package:flutter_login_app_mvvm/widgets/my_elevated_button.dart';
 import 'package:flutter_login_app_mvvm/widgets/my_richtext.dart';
 import 'package:flutter_login_app_mvvm/widgets/my_textfield.dart';
 
-import '../main.dart';
-
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
 
@@ -40,18 +38,9 @@ class _LoginViewState extends State<LoginView> {
   // }
 
   Future _logIn() async {
-    showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) => const Center(
-              child: CircularProgressIndicator(),
-            ));
-
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
     await _firebaseAuthViewModel.logIn(email, password);
-
-    navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 
   void _onClickedSignUp() {
